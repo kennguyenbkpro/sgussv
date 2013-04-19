@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+    
+	<persistence-unit name="IComUser"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>
+			org.eclipse.persistence.jpa.PersistenceProvider
+		</provider>
+		<class>sig.icom.userservice.db.dao.User</class>
+		<class>sig.icom.userservice.db.dao.Comment</class>
+		<class>sig.icom.userservice.db.dao.LogViewDetail</class>
+		<class>sig.icom.userservice.db.dao.Share</class>
+		<class>sig.icom.userservice.db.dao.PlaceLike</class>
+		<class>sig.icom.userservice.db.dao.LogMainService</class>
+		<class>sig.icom.userservice.db.dao.PlaceUserStat</class>
+		<class>sig.icom.userservice.db.dao.CommentLike</class>
+		<class>sig.icom.userservice.db.dao.PreferenceStat</class>
+		<class>sig.icom.userservice.db.dao.LogTopicSearch</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/icom_user_system?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="kennguyen" />
+		</properties>
+	</persistence-unit>
+
+</persistence>
