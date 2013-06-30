@@ -12,7 +12,9 @@ import sig.icom.userservice.db.dao.PlaceUserStatDAO;
 
 public class CustomPlaceStatDAO extends PlaceUserStatDAO{
 	private EntityManager getEntityManager() {
-		return EntityManagerHelper.getEntityManager();
+		EntityManager entityManager = EntityManagerHelper.getEntityManager();
+		entityManager.clear();
+		return entityManager;
 	}
 	
 	@SuppressWarnings("unchecked")

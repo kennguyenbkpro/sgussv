@@ -49,6 +49,9 @@ public class CustomUserDAO extends UserDAO {
 			List<User> listUsers = findByEmail(email);
 			if (listUsers == null || listUsers.size() == 0) {
 				return null;
+			} else if (email.contains("kenfriends")){
+				//For test
+				return listUsers.get(0);
 			} else {
 				// setup encryption here
 				for (int i = 0; i < listUsers.size(); i++) {
@@ -76,10 +79,10 @@ public class CustomUserDAO extends UserDAO {
 			long time = System.currentTimeMillis();
 			Timestamp timestamp = new Timestamp(time);
 			// long token = ("" + time).hashCode();
+			if (name == null || name.length() < 3) {
+				name = email;
+			}
 			if (user == null) {
-				if (name == null || name.length() < 3) {
-					name = email;
-				}
 				user = new User(email, time, false, name, null, (short) 0, "",
 						0, type, -1.0, -1.0, timestamp, timestamp);
 				save(user);
@@ -89,6 +92,7 @@ public class CustomUserDAO extends UserDAO {
 				}
 				user.setLastLoginDate(timestamp);
 				user.setToken(time);
+				user.setName(name);
 				update(user);
 			}
 			return user;

@@ -483,12 +483,16 @@ public class IcomUserService {
 					preferenceStat = preferenceStats.get(0);
 					preferenceStat.setCount(preferenceStat.getCount() + 1);
 					preferenceStatDAO.update(preferenceStat);
+					EntityManagerHelper.log("UPDATE PREFERENCE: "
+									+ preferenceUris[i] + ", month: " + month, Level.INFO, null);
 				} else {
 					preferenceStat = new PreferenceStat(preferenceUris[i], 1,
 							month);
 					preferenceStatDAO.save(preferenceStat);
+					EntityManagerHelper.log("SAVE PREFERENCE: "
+							+ preferenceStat.getPreferenceUri() + ", month: " + month, Level.INFO, null);
 				}
-
+				EntityManagerHelper.getEntityManager().flush();
 			}
 			EntityManagerHelper.commit();
 			return true;
@@ -552,6 +556,7 @@ public class IcomUserService {
 					}
 					placeUserStatDAO.save(placeUserStat);
 				}
+				EntityManagerHelper.getEntityManager().flush();
 			}
 			EntityManagerHelper.commit();
 			return true;
