@@ -84,6 +84,12 @@ public class IcomUserService {
 		try {
 			User user = customUserDAO.validateToken(email, token);
 			if (user == null) {
+				User other = customUserDAO.findUserByEmail(email);
+				if (other != null){
+					UserModel userModel = new UserModel();
+					userModel.copyFrom(other);
+					return userModel;
+				}
 				return null;
 			}  else {
 				UserModel userModel = new UserModel();
@@ -95,6 +101,7 @@ public class IcomUserService {
 			return null;
 		}
 	}
+	
 	
 	//COMMENT
 	
